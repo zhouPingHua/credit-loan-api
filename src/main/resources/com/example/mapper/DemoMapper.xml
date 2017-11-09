@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="com.example.demo.mapper.DemoMapper">
+    <resultMap id="Demo" type="com.example.demo.bean.Demo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+    <select id="getStuById" parameterType="java.util.Map" resultMap="Demo">
+        SELECT *
+        FROM tb_demo t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="selctOne" parameterType="java.util.Map" resultMap="Demo">
+        SELECT *
+        FROM tb_demo t
+        WHERE t.id = #{id}
+    </select>
+
+
+    <select id="selectByPage" resultMap="Demo">
+        SELECT * FROM tb_demo
+    </select>
+
+
+    <select id="size" resultType="Integer">
+        SELECT COUNT(*) FROM tb_demo
+    </select>
+
+    <insert id='insert' parameterType="com.example.demo.bean.Demo">
+        INSERT INTO tb_demo( ID, NAME, AGE, ADDRESS)
+        VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>

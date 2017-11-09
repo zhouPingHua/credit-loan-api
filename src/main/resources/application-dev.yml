@@ -1,0 +1,80 @@
+spring.profiles.active: dev
+
+#服务端口
+server:
+    port: 8080
+
+#springcloud相关配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#日志
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  http:
+    encoding:
+        charset: UTF-8
+        force: true
+  application:
+      name: credit-loan-api
+  datasource:
+      name: datasource
+      driverClassName: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@//192.168.1.193:1521/lottery
+      username: credit
+      password: credit
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1 from dual
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+  redis:
+    host: 192.168.1.51
+    port: 10100
+    pool.max-idle: 200
+    pool.min-idle: 3
+    max-wait: -1
+
+
+#mybatis配置
+mybatis:
+    type-aliases-package: com.example.demo.bean
+    mapper-locations: classpath:com/example/mapper/*.xml
+
+
+pagehelper:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    reasonable: true
+    dialect: oracle
+
+
+#kafka配置
+kafka:
+  brokers : 192.168.1.81:9431
+  groupid : test-group
+
+
+memcache:
+  servers: 192.168.1.55:11211
+  weights: 5
+  initConn: 20
+  minConn: 10
+  maxConn: 50
+  maintSleep: 3000
+  nagle: false
+  socketTO: 3000
