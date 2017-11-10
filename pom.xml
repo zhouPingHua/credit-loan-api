@@ -30,6 +30,7 @@
         <kafka.version>1.0.0.RC1</kafka.version>
         <mail.version>1.4</mail.version>
         <page.version>4.1.6</page.version>
+        <curator.version>2.12.0</curator.version>
     </properties>
 
     <dependencies>
@@ -79,6 +80,18 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
             <version>4.4.1</version>
+        </dependency>
+
+        <!--zk-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
         </dependency>
 
         <!--mail 依赖-->

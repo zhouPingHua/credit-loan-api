@@ -55,6 +55,10 @@ mybatis:
     type-aliases-package: com.example.demo.bean
     mapper-locations: classpath:com/example/mapper/*.xml
 
+##zk配置
+zookeeper:
+    connect: 10.0.12.53:2181
+
 
 pagehelper:
     offsetAsPageNum: true
