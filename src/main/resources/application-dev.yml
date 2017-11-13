@@ -57,7 +57,7 @@ mybatis:
 
 #zk配置
 zookeeper:
-    connect: 10.0.12.53:2181
+    connect: 127.0.0.1:2181
 
 #pagehelper分页
 pagehelper:
