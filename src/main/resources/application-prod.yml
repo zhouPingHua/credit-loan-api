@@ -1,4 +1,6 @@
-spring.profiles.active: dev
+spring:
+  profiles:
+    active: prod
 
 #服务端口
 server:
@@ -12,7 +14,7 @@ eureka:
 
 #日志
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring-prd.xml
 
 spring:
   http:

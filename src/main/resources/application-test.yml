@@ -1,4 +1,6 @@
-spring.profiles.active: dev
+spring:
+  profiles:
+    active: test
 
 #服务端口
 server:
@@ -12,7 +14,7 @@ eureka:
 
 #日志
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring-prd.xml
 
 spring:
   http:
@@ -55,7 +57,11 @@ mybatis:
     type-aliases-package: com.example.demo.bean
     mapper-locations: classpath:com/example/mapper/*.xml
 
+#zk配置
+zookeeper:
+    connect: 127.0.0.1:2181
 
+#pagehelper分页
 pagehelper:
     offsetAsPageNum: true
     rowBoundsWithCount: true
@@ -68,7 +74,7 @@ kafka:
   brokers : 192.168.1.81:9431
   groupid : test-group
 
-
+#memcache配置
 memcache:
   servers: 192.168.1.55:11211
   weights: 5
