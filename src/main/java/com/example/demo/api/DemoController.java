@@ -19,6 +19,7 @@ public class DemoController extends BaseController{
     private DemoService demoService;
     private KafkaTemplate kafkaTemplate;
 
+    @Autowired
     public DemoController(DemoService demoService,KafkaTemplate kafkaTemplate){
         this.demoService = demoService;
         this.kafkaTemplate = kafkaTemplate;

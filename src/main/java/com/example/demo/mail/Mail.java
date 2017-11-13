@@ -14,10 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Mail {
-	private String SmtpUid = "qinjian@021mobile.com";// service@m2.9188.com
-	private String SmtpPwd = "";//qinjian123456 service9188cp123
-	private String SmtpServer = "smtp.exmail.qq.com";// smtp.m2.9188.com
-	private String SenderMail = "qinjian@021mobile.com";// service@m2.9188.com
+	private String SmtpUid = "qinjian@021mobile.com";
+	private String SmtpPwd = "";//qinjian123456
+	private String SmtpServer = "smtp.exmail.qq.com";
+	private String SenderMail = "qinjian@021mobile.com";
 	private String SenderNick = "测试mail";
 
 	public Mail() {
@@ -249,29 +249,4 @@ public class Mail {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-
-//		InternetAddress[] address = InternetAddress.parse("240480363@qq.com,wenshiliang@9188.com", false);
-//		System.out.println(address);
-//		for(InternetAddress a: address){
-//			System.out.println(a);
-//		}
-
-
-		Mail m = new Mail();
-		String smtpUid = "service@m3.9188.com";// service@m2.9188.com
-		String smtpPwd = "service9188cp123";// service9188cp123
-		String smtpServer = "m3.9188.com";// smtp.m2.9188.com
-		String senderMail = "service@m3.9188.com";// service@m2.9188.com
-		String senderNick = "9188彩票网";
-		m.setSmtpUid(smtpUid);
-		m.setSmtpPwd(smtpPwd);
-		m.setSmtpServer(smtpServer);
-		m.setSenderMail(senderMail);
-		m.setSenderNick(senderNick);
-//
-		//
-		m.sendMsg("240480363@qq.com,wenshiliang@9188.com", "购彩上9188.com彩票网", "购彩上9188.com彩票网123456 <a href=\"http://www.9188.com/useraccount/\">www.9188.com</a>");
-		System.out.println("=====end。");
-	}
 }

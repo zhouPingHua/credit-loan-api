@@ -1,4 +1,4 @@
-package com.example.demo.memcache;
+package com.example.demo.config;
 
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
