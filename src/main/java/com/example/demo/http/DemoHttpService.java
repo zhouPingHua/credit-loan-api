@@ -19,7 +19,7 @@ public class DemoHttpService extends AbstractHttpService {
         loginContext.setUri(url);
         Map<String,String> datas = new HashMap<>();
         datas.put("phoneNo","15079019862");
-        datas.put("servicePwd","zphqq123456");
+        datas.put("servicePwd","");
         datas.put("opCode","ALIPAY");
         datas.put("userId","zph");
         datas.put("method","login");
