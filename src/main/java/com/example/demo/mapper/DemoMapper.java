@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.bean.Demo;
-import org.apache.ibatis.annotations.Mapper;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by zph  Date：2017/11/7.
  */
-public interface DemoMapper {
+public interface DemoMapper extends Mapper<Demo> {
 
     Demo getStuById(Map<String, Long> param);
 
@@ -17,5 +17,5 @@ public interface DemoMapper {
 
     List<Demo> selectByPage();
 
-    Integer insert(Demo demo);
+    int insert(Demo demo);
 }

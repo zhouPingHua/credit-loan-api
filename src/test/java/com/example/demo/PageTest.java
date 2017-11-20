@@ -23,7 +23,7 @@ public class PageTest {
     @Test
     public void test(){
 
-        List<Demo> demoList = demoService.findItemByPage(2,3);
+        List<Demo> demoList = demoService.findItemByPage(2,2);
 
         System.out.println(demoList);
 

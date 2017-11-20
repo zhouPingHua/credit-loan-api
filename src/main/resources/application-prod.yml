@@ -1,6 +1,6 @@
-spring:
-  profiles:
-    active: prod
+#spring:
+#  profiles:
+#    active: prod
 
 #服务端口
 server:
@@ -51,6 +51,11 @@ spring:
     pool.min-idle: 3
     max-wait: -1
 
+
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: oracle
 
 #mybatis配置
 mybatis:

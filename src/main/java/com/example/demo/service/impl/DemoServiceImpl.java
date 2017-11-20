@@ -62,7 +62,7 @@ public class DemoServiceImpl extends BaseService implements DemoService {
         PageHelper.startPage(currentPage, pageSize);
         List<Demo> demos =  demoMapper.selectByPage();
         //全部商品
-        int countNums = demos.size();
+        int countNums = 6;
         PageBean<Demo> pageData = new PageBean<>(currentPage, pageSize, countNums);
         pageData.setItems(demos);
         return pageData.getItems();

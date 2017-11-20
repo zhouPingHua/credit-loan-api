@@ -1,9 +1,7 @@
 package com.example.demo.api;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.example.demo.bean.Demo;
-import com.example.demo.mapper.DemoMapper;
 import com.example.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

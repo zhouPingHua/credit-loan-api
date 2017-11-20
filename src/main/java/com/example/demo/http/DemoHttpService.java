@@ -18,7 +18,7 @@ public class DemoHttpService extends AbstractHttpService {
         loginContext.setEncoding("utf-8");
         loginContext.setUri(url);
         Map<String,String> datas = new HashMap<>();
-        datas.put("phoneNo","15079019862");
+        datas.put("phoneNo","");
         datas.put("servicePwd","");
         datas.put("opCode","ALIPAY");
         datas.put("userId","zph");
@@ -27,12 +27,6 @@ public class DemoHttpService extends AbstractHttpService {
         String result = doPost(loginContext);
         return result;
     }
-
-
-
-
-
-
 
     public static void main(String[] args) {
         DemoHttpService demoHttpService = new DemoHttpService();
