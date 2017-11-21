@@ -5,6 +5,7 @@ import com.example.demo.bean.PageBean;
 import com.example.demo.mapper.DemoMapper;
 import com.example.demo.service.BaseService;
 import com.example.demo.service.DemoService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -59,11 +60,11 @@ public class DemoServiceImpl extends BaseService implements DemoService {
     @Override
     public List<Demo> findItemByPage(int currentPage, int pageSize) {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
-        PageHelper.startPage(currentPage, pageSize);
-        List<Demo> demos =  demoMapper.selectByPage();
+        Page<?> page = PageHelper.startPage(currentPage, pageSize);
+        List<Demo> demos =  demoMapper.selectAll();
         //全部商品
-        int countNums = 6;
-        PageBean<Demo> pageData = new PageBean<>(currentPage, pageSize, countNums);
+        long countNums = page.getTotal();
+        PageBean<Demo> pageData = new PageBean<>(currentPage, pageSize, Integer.valueOf(countNums+""));
         pageData.setItems(demos);
         return pageData.getItems();
     }

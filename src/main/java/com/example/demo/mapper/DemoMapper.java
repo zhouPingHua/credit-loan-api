@@ -17,5 +17,5 @@ public interface DemoMapper extends Mapper<Demo> {
 
     List<Demo> selectByPage();
 
-    int insert(Demo demo);
+    int insertDemo(Demo demo);
 }

@@ -31,7 +31,7 @@
         SELECT COUNT(*) FROM tb_demo
     </select>
 
-    <insert id='insert' parameterType="com.example.demo.bean.Demo">
+    <insert id='insertDemo' parameterType="com.example.demo.bean.Demo">
         INSERT INTO tb_demo( ID, NAME, AGE, ADDRESS)
         VALUES(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
         #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR})
