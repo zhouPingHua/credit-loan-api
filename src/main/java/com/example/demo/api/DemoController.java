@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
 import com.alibaba.fastjson.JSON;
+import com.example.demo.annotation.Sign;
 import com.example.demo.bean.Demo;
 import com.example.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class DemoController extends BaseController{
     public Demo dbDemo(@PathVariable("id") Long id) {
         Demo student = demoService.selctOne(id);
         return student;
+    }
+
+    @RequestMapping("/demoAop.go")
+    @Sign
+    public Demo demoAop(Demo demo) {
+        System.out.println("test demoAop方法"+demo.getId());
+        return demo;
     }
 
     @RequestMapping("/selectOne")

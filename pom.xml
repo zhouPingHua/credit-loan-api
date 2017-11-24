@@ -6,7 +6,7 @@
     <groupId>com.example</groupId>
     <artifactId>credit-loan-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>credit-loan-api</name>
     <description>Demo project for Spring Boot</description>
@@ -89,6 +89,12 @@
             <version>4.4.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.6</version>
+        </dependency>
+
         <!--zk-->
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -130,6 +136,12 @@
             <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
             <!--</exclusion>-->
             <!--</exclusions>-->
+        </dependency>
+
+        <!--aspect-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <!--servlet api 依赖-->

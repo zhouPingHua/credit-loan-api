@@ -139,7 +139,6 @@ public abstract class AbstractHttpService {
 
             response = httpClient.execute(httpGet, context.getHttpContext());
 
-
             context.setResponseInfo(response);
             // 获取信息
             HttpEntity entity = response.getEntity();
