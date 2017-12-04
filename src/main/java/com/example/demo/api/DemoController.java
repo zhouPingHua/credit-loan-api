@@ -37,6 +37,16 @@ public class DemoController extends BaseController{
         return demo;
     }
 
+    @RequestMapping("/demoAop2.go")
+    @Sign
+    public Demo demoAop2(String name, int age) {
+        Demo demo = new Demo();
+        demo.setName(name);
+        demo.setAge(age);
+        System.out.println("test demoAop方法"+demo.getName());
+        return demo;
+    }
+
     @RequestMapping("/selectOne")
     public String selectOne2() {
         Demo student = demoService.getStuById(1L);
