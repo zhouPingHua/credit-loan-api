@@ -1,7 +1,6 @@
 package com.example.demo.aspect;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.curator.shaded.com.google.common.collect.Maps;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 import java.util.Map;
 

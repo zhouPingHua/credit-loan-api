@@ -14,13 +14,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Mail {
-	private String SmtpUid = "qinjian@021mobile.com";
-	private String SmtpPwd = "";//qinjian123456
-	private String SmtpServer = "smtp.exmail.qq.com";
-	private String SenderMail = "qinjian@021mobile.com";
-	private String SenderNick = "测试mail";
+
+	private String SmtpUid;
+	private String SmtpPwd;
+	private String SmtpServer;
+	private String SenderMail;
+	private String SenderNick;
 
 	public Mail() {
+
 	}
 
 	public String getSmtpUid() {
@@ -91,6 +93,7 @@ public class Mail {
 	 * 
 	 * @return
 	 */
+	@org.junit.Test
 	public boolean sendMsg(String inceptAddress, String title, String content) {
 		if (!verifyEmail(inceptAddress)) {
 			return false;
@@ -140,7 +143,6 @@ public class Mail {
 
 			msg.setContent(multipart);
 			Transport.send(msg);
-			// System.out.println("邮件已顺利传送");
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
 			return false;
@@ -232,18 +234,6 @@ public class Mail {
 		Matcher m = p.matcher(email);
 		if (m.matches()) {
 			return true;
-			// String[] mail= email.split("@");
-			// try
-			// {
-			// InetAddress IP = InetAddress.getByName(mail[1]);
-			// System.out.println("IP Address is--->;"+IP);
-			// return true;
-			// }
-			// catch(UnknownHostException e)
-			// {
-			// e.printStackTrace();
-			// return false;
-			// }
 		} else {
 			return false;
 		}

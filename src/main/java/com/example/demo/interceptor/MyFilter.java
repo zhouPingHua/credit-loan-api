@@ -1,9 +1,9 @@
 package com.example.demo.interceptor;
 
-import org.springframework.stereotype.Component;
+import com.example.demo.interceptor.converter.ParameterRequestWrapper;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.IOException;
 
 /**
@@ -19,10 +19,15 @@ public class MyFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
+    public void doFilter(ServletRequest servletRequest, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
         System.out.println("执行过滤操作");
-        chain.doFilter(request, response);
+        ParameterRequestWrapper parameterRequestWrapper = null;
+        if(servletRequest instanceof ParameterRequestWrapper){
+            parameterRequestWrapper = (ParameterRequestWrapper) servletRequest;
+            parameterRequestWrapper.setParameter("name","zph");
+        }
+        chain.doFilter(servletRequest, response);
     }
 
     @Override

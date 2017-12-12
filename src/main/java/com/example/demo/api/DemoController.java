@@ -25,6 +25,7 @@ public class DemoController extends BaseController{
     }
 
     @RequestMapping("/demo/{id}")
+    @Sign
     public Demo dbDemo(@PathVariable("id") Long id) {
         Demo student = demoService.selctOne(id);
         return student;

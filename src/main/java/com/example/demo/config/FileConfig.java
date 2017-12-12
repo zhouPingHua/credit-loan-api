@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.interceptor.MyFilter;
+import com.example.demo.interceptor.RequestFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,32 @@ import javax.servlet.Filter;
  */
 @Configuration
 public class FileConfig {
+
+
+
+    /**
+     * 配置过滤器
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean requestFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(requestFilter());
+        registration.addUrlPatterns("/*");
+        registration.addInitParameter("paramName", "paramValue");
+        registration.setName("requestFilter");
+        return registration;
+    }
+
+
+    /**
+     * 创建一个bean
+     * @return
+     */
+    @Bean(name = "requestFilter")
+    public Filter requestFilter() {
+        return new RequestFilter();
+    }
 
 
 
