@@ -57,6 +57,7 @@ public class DemoAspect {
         //如果要获取Session信息的话，可以这样写：
         //HttpSession session = (HttpSession) requestAttributes.resolveReference(RequestAttributes.REFERENCE_SESSION);
         Enumeration<String> enumeration = request.getParameterNames();
+//        request.getRemoteAddr();
         Map<String,String> parameterMap = Maps.newHashMap();
         while (enumeration.hasMoreElements()){
             String parameter = enumeration.nextElement();

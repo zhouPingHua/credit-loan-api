@@ -4,7 +4,7 @@
 
 #服务端口
 server:
-    port: 8080
+    port: 80
 
 #springcloud相关配置
 eureka:
@@ -45,7 +45,7 @@ spring:
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
   redis:
-    host: 192.168.1.51
+    host: 118.24.62.144
     port: 10100
     pool.max-idle: 200
     pool.min-idle: 3
