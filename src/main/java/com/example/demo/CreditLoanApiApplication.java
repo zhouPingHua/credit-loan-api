@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.example.demo")
-@MapperScan(basePackages = "com.example.**.mapper")
+//@MapperScan(basePackages = "com.example.**.mapper")
 public class CreditLoanApiApplication  {
 	//需要tomcat启动继承extends SpringBootServletInitializer，去掉自身集成的tomcat插件
 

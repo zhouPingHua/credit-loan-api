@@ -24,6 +24,8 @@ spring:
   application:
       name: credit-loan-api
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    base:
       name: datasource
       driverClassName: oracle.jdbc.driver.OracleDriver
       url: jdbc:oracle:thin:@//192.168.1.193:1521/lottery
@@ -44,6 +46,28 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
+    centao:
+      name: datasource
+      driverClassName: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@//192.168.1.193:1521/lottery
+      username: credit
+      password: credit
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 1 from dual
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
   redis:
     host: 118.24.62.144
     port: 10100

@@ -2,7 +2,8 @@ package com.example.demo.service.impl;
 
 import com.example.demo.bean.Demo;
 import com.example.demo.bean.PageBean;
-import com.example.demo.mapper.DemoMapper;
+import com.example.demo.mapper.base.DemoMapper;
+import com.example.demo.mapper.centao.CentaoMapper;
 import com.example.demo.service.BaseService;
 import com.example.demo.service.DemoService;
 import com.github.pagehelper.Page;
@@ -23,12 +24,15 @@ public class DemoServiceImpl extends BaseService implements DemoService {
 
     private DemoMapper demoMapper;
 
+    private CentaoMapper centaoMapper;
+
     private RedisTemplate<String, Demo> redisTemplate;
 
     @Autowired
-    private DemoServiceImpl(DemoMapper demoMapper, RedisTemplate redisTemplate) {
+    private DemoServiceImpl(DemoMapper demoMapper,CentaoMapper centaoMapper, RedisTemplate redisTemplate) {
         this.demoMapper = demoMapper;
         this.redisTemplate = redisTemplate;
+        this.centaoMapper = centaoMapper;
     }
 
     @Override
@@ -74,6 +78,9 @@ public class DemoServiceImpl extends BaseService implements DemoService {
         Map<String, Long> params = new HashMap<>();
         params.put("id", id);
         Demo result = demoMapper.getStuById(params);
+        System.out.println(result);
+        result = centaoMapper.getStuById(params);
+        System.out.println(result);
         return result;
     }
 
