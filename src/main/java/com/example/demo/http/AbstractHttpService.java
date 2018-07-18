@@ -1,8 +1,7 @@
 package com.example.demo.http;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
+import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -12,6 +11,8 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
@@ -32,10 +33,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import java.io.*;
+import java.net.UnknownHostException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -52,11 +53,15 @@ public abstract class AbstractHttpService {
 
     public Logger logger = LoggerFactory.getLogger(getClass());
     private static PoolingHttpClientConnectionManager connManager = null;
+    private static HttpRequestRetryHandler retryHandler = null;
 
     public AbstractHttpService() {
         synchronized (AbstractHttpService.class) {
             if (connManager == null) {
                 connManager = initConnManager();
+            }
+            if(retryHandler == null){
+                retryHandler = initHttpRequestRetryHandler();
             }
         }
     }
@@ -309,7 +314,8 @@ public abstract class AbstractHttpService {
                 .create()
                 .setProxy(proxy)
                 .setDefaultCookieStore(cookieStore)
-                .setConnectionManager(connManager).build();
+                .setConnectionManager(connManager)
+                .setRetryHandler(retryHandler).build();
     }
 
 
@@ -355,6 +361,50 @@ public abstract class AbstractHttpService {
         connectionManager.setDefaultMaxPerRoute(50);
         return connectionManager;
     }
+
+    //initHttpRequestRetryHandler
+    private HttpRequestRetryHandler initHttpRequestRetryHandler(){
+        return new HttpRequestRetryHandler() {
+            @Override
+            public boolean retryRequest(IOException exception,
+                                        int executionCount, HttpContext context) {
+                if (executionCount >= 5) {// 如果已经重试了5次，就放弃
+                    return false;
+                }
+                if(exception instanceof HttpHostConnectException){ //连接服务器拒接 Connection refused
+                    return false;
+                }
+                if (exception instanceof NoHttpResponseException) {// 如果服务器丢掉了连接，那么就重试
+                    return true;
+                }
+                if (exception instanceof SSLHandshakeException) {// 不要重试SSL握手异常
+                    return false;
+                }
+                if (exception instanceof InterruptedIOException) {// 超时
+                    return false;
+                }
+                if (exception instanceof UnknownHostException) {// 目标服务器不可达
+                    return false;
+                }
+                if (exception instanceof ConnectTimeoutException) {// 连接被拒绝
+                    return false;
+                }
+                if (exception instanceof SSLException) {// SSL握手异常
+                    return false;
+                }
+
+                HttpClientContext clientContext = HttpClientContext
+                        .adapt(context);
+                HttpRequest request = clientContext.getRequest();
+                // 如果请求是幂等的，就再次尝试
+                if (!(request instanceof HttpEntityEnclosingRequest)) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+
 
     protected LoginContext createLoginContext(BasicCookieStore cookieStore) {
         return createLoginContext(cookieStore, null);
